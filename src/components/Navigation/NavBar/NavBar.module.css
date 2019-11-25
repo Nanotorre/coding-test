@@ -10,12 +10,76 @@
 .NavBar .logoContainer {
   width: 200px;
 }
-.NavBar .logoContainer img{
+.NavBar .logoContainer img {
   width: 100%;
 }
 .NavBar h1 {
   font-size: 23px;
-    font-weight: bold;
-    color: white;
-    padding-right: 90px;
+  font-weight: bold;
+  color: white;
+  padding-right: 40px;
 }
+.NavBar .mobileLogo {
+  display: none;
+}
+.NavBar .rightContainer{
+  align-content: space-around;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+
+@media all and (max-width: 480px) {
+  .NavBar {
+    padding: 10px 40px;
+  }
+  .NavBar h1 {
+    display: none;
+  }
+  .NavBar .logoContainer {
+    width: 100px;
+  }
+  .NavBar .mobileLogo {
+    display: block;
+    font-family: sans-serif;
+    font-weight: 900;
+    pointer-events: none;
+    font-size: 56px;
+    color: #f44336;
+  }
+  .NavBar .bigLogo{
+    display: none;
+  }
+  .NavBar p{
+    display: none;
+  }
+  .NavBar button:last-child {
+    margin-left: 20px;
+  }
+
+}
+
+@media all and (min-width: 481px) and (max-width: 767px){
+  .NavBar .mobileLogo {
+    display: none;
+    
+  }
+  .NavBar .logoContainer {
+    width: 155px;
+  }
+  .NavBar .bigLogo{
+    display: inline;
+  }
+  .NavBar h1 {
+    display: none;
+  }
+ }
+
+ @media all and (min-width:1200px){
+  .NavBar h1 {
+    font-size: 30px;
+  }
+ }

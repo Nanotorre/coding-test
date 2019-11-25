@@ -3,14 +3,13 @@
   height: 250px;
   background-color: #f44336;
   margin: 10px;
-  padding: 30px;
+  padding: 40px 30px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
   cursor: pointer;
-  -webkit-animation: fade-in 1.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
-	        animation: fade-in 1.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+  box-shadow: 2px 15px 53px -26px rgba(0,0,0,0.65);        
 }
 .Member .profileImg {
   width: 85px;
@@ -28,3 +27,32 @@
   margin-left: 10px;
   width: 260px;
 }
+
+@media all and (max-width: 480px) {
+  .Member {
+    width: 340px;
+    height: 190px;
+    padding: 25px 20px;
+    box-shadow: 0px 6px 19px -6px rgba(0,0,0,0.23);
+  }
+  .Member .name{
+    width: 200px;
+  }
+}
+
+@media all and (min-width: 481px) and (max-width: 767px){
+ 
+}
+@media all and (min-width: 768px) and (max-width: 959px) { 
+  .Member {
+    width: 340px;
+    height: 190px;
+    padding: 25px 20px;
+    box-shadow: 0px 6px 19px -6px rgba(0,0,0,0.23);
+  }
+  .Member .name{
+    width: 200px;
+  }
+
+ }
+

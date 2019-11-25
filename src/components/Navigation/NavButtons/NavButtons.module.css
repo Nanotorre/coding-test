@@ -1,9 +1,6 @@
 .NavButtons {
   display: flex;
-  margin: 10px;
- 
- 
-  
+  margin: 10px; 
 }
 
 .NavButtons p {

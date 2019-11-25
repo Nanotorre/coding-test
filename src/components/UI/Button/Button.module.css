@@ -1,7 +1,38 @@
 .Button {
   padding: 10px;
-  width: 45px;
+  width: 50px;
   height: 45px;
   transform: skewX(-5deg);
   border: none;
+  cursor: pointer;
+  transition: 0.2s;
+  box-shadow: 0px 6px 19px -6px rgba(0,0,0,0.23);
+}
+
+.Button.navBtn:hover{
+  background-color: rgb(168, 168, 168);
+}
+
+.Button.navBtn:active{
+  background-color: rgb(129, 129, 129);
+  border: 1px solid black;
+}
+
+.goBack {
+  background-color: #f44336;
+  color: white;
+  display: flex;
+  width: 99px;
+  align-items: center;
+  justify-content: space-around;
+  font-weight: bold;
+  font-size: 0.8rem;
+}
+
+.goBack:hover{
+  background-color: #f76e64;
+}
+
+.goBack:active{
+  background-color: #bd342a;
 }

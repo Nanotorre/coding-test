@@ -6,7 +6,6 @@ import MediasmartService from "./services/MediasmartService";
 import Layout from "./hoc/Layout/Layout";
 import Members from "./containers/Members/Members";
 import MemberDetail from "./components/MemberDetail/MemberDetail";
-import Modal from './components/UI/Modal/Modal';
 
 class App extends Component {
   constructor(props) {
@@ -16,7 +15,7 @@ class App extends Component {
       page: 0,
       selectedPage: 0,
       size: 6,
-      viewMember:false
+      viewMember: false
     };
     this.apiService = new MediasmartService();
     this.fetchMembers();
@@ -37,8 +36,6 @@ class App extends Component {
       })
       .catch(err => console.log(err));
   };
-
-
 
   paginationArray = (arr, pagination_size) => {
     let paginated = [];
@@ -71,22 +68,22 @@ class App extends Component {
     }
   };
 
-  displayMemberHandler = (id) => {
+  displayMemberHandler = id => {
     let memberSelected = this.state.members
-    .flat()
-    .filter(member => member.id === id)[0];
+      .flat()
+      .filter(member => member.id === id)[0];
 
     this.setState({
-      viewMember:true,
+      viewMember: true,
       selectedMember: memberSelected
-    })
+    });
   };
 
   closeMemberHandler = () => {
     this.setState({
-      viewMember:false
-    })
-  }
+      viewMember: false
+    });
+  };
 
 
   render() {
@@ -96,22 +93,29 @@ class App extends Component {
       const membersPage = this.state.members[this.state.selectedPage];
       members = (
         <React.Fragment>
-           {this.state.viewMember && 
-          <div class={this.state.viewMember? "modal is-active" : "modal"} onClick={this.closeMemberHandler}>
-  <div class="modal-background"></div>
-  <div class="modal-content">
-  <MemberDetail
-              id={this.state.selectedMember.id}
-              name={this.state.selectedMember.name}
-              age={this.state.selectedMember.age}
-              image={this.state.selectedMember.image}
-              bio={this.state.selectedMember.bio}
-              clicked={this.closeMemberHandler}
-            />  
-   
-  </div>
-  <button class="modal-close is-large" aria-label="close" onClick={this.closeMemberHandler}></button>
-</div>}
+          {this.state.viewMember && (
+            <div
+              class={this.state.viewMember ? "modal is-active fade-in-bck" : "modal fade-out "}
+              onClick={this.closeMemberHandler}
+            >
+              <div class="modal-background"></div>
+              <div class="modal-content">
+                <MemberDetail
+                  id={this.state.selectedMember.id}
+                  name={this.state.selectedMember.name}
+                  age={this.state.selectedMember.age}
+                  image={this.state.selectedMember.image}
+                  bio={this.state.selectedMember.bio}
+                  clicked={this.closeMemberHandler}
+                />
+              </div>
+              {/* <button
+                class="modal-close is-large"
+                aria-label="close"
+                onClick={this.closeMemberHandler}
+              ></button> */}
+            </div>
+          )}
           {/* {this.state.selectedMember && 
             
             <Modal show={this.state.viewMember} modalClosed={this.closeMemberHandler}>
@@ -124,7 +128,7 @@ class App extends Component {
               bio={this.state.selectedMember.bio}
             />  
           </Modal>} */}
-          <Members members={membersPage} clicked={this.displayMemberHandler}/>
+          <Members members={membersPage} clicked={this.displayMemberHandler} />
         </React.Fragment>
       );
     }
@@ -163,7 +167,7 @@ class App extends Component {
                 let memberSelected = this.state.members
                   .flat()
                   .filter(member => member.id === props.match.params.id)[0];
-            
+
                 return (
                   <MemberDetail
                     id={memberSelected.id}

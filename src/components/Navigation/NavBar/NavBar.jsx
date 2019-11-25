@@ -2,7 +2,7 @@ import React from "react";
 import classes from "./NavBar.module.css";
 import logo from "../../../assets/images/logo-mediasmart.png";
 import backgroundDots from "../../../assets/images/bck-dots.png";
-import NavButtons from '../NavButtons/NavButtons'
+import NavButtons from "../NavButtons/NavButtons";
 
 const navBar = props => {
   return (
@@ -11,14 +11,19 @@ const navBar = props => {
       style={{ backgroundImage: `url(${backgroundDots})` }}
     >
       <div className={classes.logoContainer}>
-        <img src={logo} alt="Mediasmart logo"></img>
+        <img src={logo} alt="Mediasmart logo" className={classes.bigLogo}></img>
+        <div className={classes.mobileLogo} alt="logo">
+          #
+        </div>
       </div>
-      <h1>MEMBERS</h1>
-      <NavButtons
-            clickPrev={props.clickPrev}
-            clickNext={props.clickNext}
-            page={props.page}
-          />
+      <div className={classes.rightContainer}>
+        <h1>MEMBERS</h1>
+        <NavButtons
+          clickPrev={props.clickPrev}
+          clickNext={props.clickNext}
+          page={props.page}
+        />
+      </div>
     </nav>
   );
 };

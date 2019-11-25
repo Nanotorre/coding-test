@@ -1,16 +1,59 @@
-.MemberDetail{
+.MemberDetail {
   background-color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 10px;
+  padding: 30px;
 
+}
+.MemberDetail .upperContainer{
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .MemberDetail .imgContainer {
-  width:400px;
+  width:200px;
 }
 
 .MemberDetail img {
   width: 100%;
+  border-radius: 50%;
 }
+
+.MemberDetail .textContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 50%;
+  margin-left: 25px;
+}
+.MemberDetail .textContainer h3:nth-child(3){
+  margin-top:25px;
+}
+.MemberDetail .textContainer p {
+  margin-top: 10px;
+}
+.MemberDetail .lowerContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  margin: 50px 5px;
+}
+.MemberDetail .lowerContainer p{
+  text-align: justify;
+  margin-top: 10px;
+}
+
+.MemberDetail h3 {
+  font-weight: bold;
+}
+.MemberDetail button {
+  margin-top: 30px;
+  align-self: center;
+}
+
+
+
