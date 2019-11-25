@@ -7,6 +7,8 @@ const cache = require('./cache');
 const cron = require('node-cron');
 const Utils = require('./Utils');
 const path = require('path');
+
+//Mongo config & db update 
 require ('./configs/db.config');
 
 
@@ -20,6 +22,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 
+//Schedule update
 cron.schedule('* 4 * * *', () => {
   Utils.seedDB(cache.page, cache.membersBuffer, Utils.fixArr, Utils.updateDBandCache)
   console.log("Schedule task: updating db & cache from api call");
@@ -28,7 +31,7 @@ cron.schedule('* 4 * * *', () => {
   timezone: "Europe/Madrid"
 });
 
-
+//Routes
 const apiRouter = require('./routes/api.routes');
 app.use('/api', apiRouter);
 

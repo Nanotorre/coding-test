@@ -6,7 +6,7 @@ mongoose
 .connect(process.env.MONGO_URL, {useNewUrlParser: true})
 .then( x => {
 
-  console.log(`Connected to Mongo Atlas"`)
+  console.log(`Connected to Mongo Atlas`)
   Utils.seedDB(cache.page, cache.membersBuffer, Utils.fixArr, Utils.updateDBandCache)
   
 })

@@ -3,6 +3,7 @@ const cache = require("./cache");
 const Member = require("./models/Member");
 
 module.exports = {
+
   fixArr: arr => {
     let fixedArr = [...arr];
     let membersToFix = [];
@@ -39,6 +40,7 @@ module.exports = {
     return fixedArr;
   },
 
+
   updateCache: (page, membersBuffer, fixArrFn) => {
     Member.find()
       .limit(membersBuffer)
@@ -71,6 +73,7 @@ module.exports = {
       .catch(err => console.log(err));
   },
 
+
   updateDBandCache: async function(page, membersBuffer, fixArrFn) {
     console.log("updating db & cache");
     return axios
@@ -98,6 +101,7 @@ module.exports = {
       .catch(err => console.log(err));
   },
 
+  
   seedDB: async function(page, membersBuffer, fixArrFn, updateDBFn) {
     let promise = updateDBFn(page, membersBuffer, fixArrFn);
     let result = await promise;
