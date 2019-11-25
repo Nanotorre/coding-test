@@ -12,10 +12,17 @@ router.get("/members/:page", (req, res, next) => {
     .limit(cache.membersBuffer)
     .skip(+req.params.page)
     .then(response => {
-      return response.length > 0 ?
-          res.json(response)
-        : 
-        Utils.seedDB(cache.page, cache.membersBuffer, Utils.fixArr, Utils.updateDBandCache);
+       if (response.length > 0) {
+        return res.json(response)
+       } 
+       else {
+        Utils.seedDB(cache.page, cache.membersBuffer, Utils.fixArr, Utils.updateDBandCache)
+        .then( responseFromApi => {
+          return res.json(responseFromApi);
+        })
+        .catch(err => console.log(err))
+       }
+       
     })
     .catch(err => console.log(err))
 });

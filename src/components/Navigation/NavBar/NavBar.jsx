@@ -22,6 +22,7 @@ const navBar = props => {
           clickPrev={props.clickPrev}
           clickNext={props.clickNext}
           page={props.page}
+          lastPage={props.lastPage}
         />
       </div>
     </nav>

@@ -11,7 +11,7 @@ const navButtons = props => {
         </span>
       </Button>
       <p>{props.page}</p>
-      <Button btnType="navBtn" clicked={props.clickNext} >
+      <Button btnType="navBtn" clicked={props.clickNext} disable={props.lastPage}>
         <span className="icon">
           <i className="fas fa-2x fa-angle-right"></i>
         </span>

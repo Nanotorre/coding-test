@@ -12,7 +12,8 @@ class App extends Component {
       page: 0,
       selectedPage: 0,
       size: 6,
-      viewMember: false
+      viewMember: false,
+      lastPage: false
     };
     this.apiService = new MediasmartService();
     this.fetchMembers();
@@ -39,12 +40,17 @@ class App extends Component {
     while (arr.length) {
       paginated.push(arr.splice(0, pagination_size));
     }
-
     return paginated;
   };
 
   nextPageHandler = () => {
     const nextPage = this.state.selectedPage + 1;
+    if(nextPage === this.state.members.length) {
+      this.setState({
+        lastPage: true
+      });
+      return;
+    }
     if (nextPage === this.state.members.length - 5) {
       const fetchPage = this.state.page + 1;
       this.fetchMembers(fetchPage);
@@ -60,7 +66,8 @@ class App extends Component {
     if (this.state.selectedPage > 0) {
       const prevPage = this.state.selectedPage - 1;
       this.setState({
-        selectedPage: prevPage
+        selectedPage: prevPage,
+        lastPage: false
       });
     }
   };
@@ -90,7 +97,7 @@ class App extends Component {
 
   
   render() {
-    let members = <p>loading...</p>;
+    let members = <div className="spinner"></div>;
 
     if (this.state.members[this.state.selectedPage]) {
       const membersPage = this.state.members[this.state.selectedPage];
@@ -129,6 +136,7 @@ class App extends Component {
           clickPrev={this.prevPageHandler}
           clickNext={this.nextPageHandler}
           page={this.state.selectedPage}
+          lastPage={this.state.lastPage}
           clicked={this.homeHandler}
         >
           <React.Fragment>{members}</React.Fragment>
