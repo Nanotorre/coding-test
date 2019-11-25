@@ -12,6 +12,7 @@
 }
 .NavBar .logoContainer img {
   width: 100%;
+  cursor: pointer;
 }
 .NavBar h1 {
   font-size: 23px;

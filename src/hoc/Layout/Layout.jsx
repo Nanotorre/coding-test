@@ -1,5 +1,4 @@
 import React from "react";
-import classes from "./Layout.module.css";
 import NavBar from "./../../components/Navigation/NavBar/NavBar";
 
 const layout = props => (
@@ -9,6 +8,7 @@ const layout = props => (
         clickPrev={props.clickPrev}
         clickNext={props.clickNext}
         page={props.page}
+        clicked={props.clicked}
       />
     </header>
 

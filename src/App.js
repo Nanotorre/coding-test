@@ -1,7 +1,4 @@
 import React, { Component } from "react";
-import { Switch, Route } from "react-router-dom";
-// import fetch from 'isomorphic-fetch';
-//import axios from "axios";
 import MediasmartService from "./services/MediasmartService";
 import Layout from "./hoc/Layout/Layout";
 import Members from "./containers/Members/Members";
@@ -85,7 +82,13 @@ class App extends Component {
     });
   };
 
+  homeHandler = () => {
+    this.setState({
+      selectedPage: 0
+    });
+  }
 
+  
   render() {
     let members = <p>loading...</p>;
 
@@ -95,11 +98,15 @@ class App extends Component {
         <React.Fragment>
           {this.state.viewMember && (
             <div
-              class={this.state.viewMember ? "modal is-active fade-in-bck" : "modal fade-out "}
+            className={
+                this.state.viewMember
+                  ? "modal is-active fade-in-bck"
+                  : "modal fade-out "
+              }
               onClick={this.closeMemberHandler}
             >
-              <div class="modal-background"></div>
-              <div class="modal-content">
+              <div className="modal-background"></div>
+              <div className="modal-content">
                 <MemberDetail
                   id={this.state.selectedMember.id}
                   name={this.state.selectedMember.name}
@@ -109,25 +116,8 @@ class App extends Component {
                   clicked={this.closeMemberHandler}
                 />
               </div>
-              {/* <button
-                class="modal-close is-large"
-                aria-label="close"
-                onClick={this.closeMemberHandler}
-              ></button> */}
             </div>
           )}
-          {/* {this.state.selectedMember && 
-            
-            <Modal show={this.state.viewMember} modalClosed={this.closeMemberHandler}>
-           
-              <MemberDetail
-              id={this.state.selectedMember.id}
-              name={this.state.selectedMember.name}
-              age={this.state.selectedMember.age}
-              image={this.state.selectedMember.image}
-              bio={this.state.selectedMember.bio}
-            />  
-          </Modal>} */}
           <Members members={membersPage} clicked={this.displayMemberHandler} />
         </React.Fragment>
       );
@@ -135,51 +125,13 @@ class App extends Component {
 
     return (
       <div className="App">
-        {/* <header className="App-header">
-          <div className="App-logo" alt="logo">
-            #
-          </div>
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-
-          <button onClick={this.prevPageHandler}>Previous members</button>
-          <button onClick={this.nextPageHandler}>Next members</button>
-          <p>Page {this.state.selectedPage}</p>
-        </header> */}
         <Layout
           clickPrev={this.prevPageHandler}
           clickNext={this.nextPageHandler}
           page={this.state.selectedPage}
+          clicked={this.homeHandler}
         >
-          <Switch>
-            <Route
-              exact
-              path="/"
-              render={() => {
-                return <React.Fragment>{members}</React.Fragment>;
-              }}
-            />
-
-            <Route
-              path="/members/:id"
-              render={props => {
-                let memberSelected = this.state.members
-                  .flat()
-                  .filter(member => member.id === props.match.params.id)[0];
-
-                return (
-                  <MemberDetail
-                    id={memberSelected.id}
-                    name={memberSelected.name}
-                    age={memberSelected.age}
-                    image={memberSelected.image}
-                    bio={memberSelected.bio}
-                  />
-                );
-              }}
-            />
-          </Switch>
+          <React.Fragment>{members}</React.Fragment>
         </Layout>
       </div>
     );

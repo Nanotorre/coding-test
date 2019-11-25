@@ -20,38 +20,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-// Utils.updateCache( cache.page, cache.membersBuffer, Utils.fixArr );
-
-// (async function () {
-//   console.log("fire async")
-//     // let promise = Utils.updateDB2( )
-//     let promise = Utils.updateDB( cache.page, cache.membersBuffer, Utils.fixArr)
-//     let result = await promise;
-//     let nextPage = cache.page;
-//     while(result.length > 0) {
-//       console.log("db actualizada y resulta mas de 120. sigue")
-//       result = [];
-//       nextPage += 1;
-//       promise = Utils.updateDB( nextPage, cache.membersBuffer, Utils.fixArr);
-//       result = await promise;
-//       console.log("result actualizado recursivo", result.length)
-//     }
-    
-// })()
-
-
-
-cron.schedule("* 4 * * *", function () {
+cron.schedule('* 4 * * *', () => {
   Utils.seedDB(cache.page, cache.membersBuffer, Utils.fixArr, Utils.updateDBandCache)
   console.log("Schedule task: updating db & cache from api call");
+}, {
+  scheduled: true,
+  timezone: "Europe/Madrid"
 });
-
-
-// cron.schedule("* * * * *", function () {
-//   Utils.updateCache( cache.page, cache.membersBuffer, Utils.fixArr );
-//   console.log("Schedule task: updating cache from api call");
-// });
-
 
 
 const apiRouter = require('./routes/api.routes');

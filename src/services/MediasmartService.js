@@ -12,11 +12,6 @@ class MediasmartService {
     .then( response => response.data) 
     .catch( err => console.log(err))
   }
-  member = (id) => {
-    return this.service.get(`/members/member/${id}`)
-    .then( response => response.data) 
-    .catch( err => console.log(err))
-  }
 
 }
 

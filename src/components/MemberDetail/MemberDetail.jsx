@@ -28,8 +28,8 @@ const memberDetail = props => {
         <p>{props.bio}</p>
         <Button clicked={props.clicked} btnType={"goBack"} className={classes.goBackBtn}>
           Go Back
-        <span class="icon">
-          <i class="fas fa-2x fa-times"></i>
+        <span className="icon">
+          <i className="fas fa-2x fa-times"></i>
         </span>
         </Button>
       </div>

@@ -31,14 +31,14 @@ module.exports = {
     });
     if (membersToFix.length > 0) {
       console.log(
-        "Warning!! There´s some members wrong. Follow the reference error table: "
+        "Warning!! There´s some data wrong. Follow the reference error table: "
       );
       console.table(membersToFix);
     }
 
     return fixedArr;
   },
- 
+
   updateCache: (page, membersBuffer, fixArrFn) => {
     Member.find()
       .limit(membersBuffer)
@@ -69,41 +69,19 @@ module.exports = {
         }
       })
       .catch(err => console.log(err));
-
-    //   axios.get(`http://work.mediasmart.io?page=${page}&page_size=${membersBuffer}`, {headers: {authorization:"mediasmart2019"}})
-    // .then(response => {
-    //   if (response.data) {
-    //     cache.del(cache.page);
-    //     const fixedMembers = fixArrFn(response.data);
-    //     cache.set(page, fixedMembers);
-    //     return fixedMembers;
-    //   }
-    //   const cacheNotUpdated = cache.get(cache.page);
-    //   cache.del(cache.page);
-    //   cache.set(page, cacheNotUpdated);
-    //   console.log("Api din´t answer");
-    //   return "WARNING - SERVER ERROR"
-    // })
-    // .catch(err => console.log(err))
-    // }
   },
 
-
   updateDBandCache: async function(page, membersBuffer, fixArrFn) {
-    console.log("updating db");
+    console.log("updating db & cache");
     return axios
       .get(
         `http://work.mediasmart.io?page=${page}&page_size=${membersBuffer}`,
         { headers: { authorization: process.env.API_KEY } }
       )
       .then(response => {
-        console.log("response from api", response.data.length);
-
         if (response.data && response.data.length > 0) {
-          console.log("collection is dropping", response.data.length);
-          if( page === 0 ) {
+          if (page === 0) {
             Member.collection.drop();
-            console.log("collection dropped");
           }
           let fixedResponseArr = fixArrFn(response.data);
           let fixedResponseArrToCache = fixedResponseArr.slice(0, 120);
@@ -111,33 +89,25 @@ module.exports = {
           response.data.forEach((member, idx) => {
             fixedResponseArr[idx]._id = member.id;
           });
-          console.log("ready to insert in mongo", fixedResponseArr.length);
           Member.collection.insertMany(fixedResponseArr);
-          console.log("inserted. conclude", fixedResponseArr.length);
           return fixedResponseArr;
-        }
-        else {
+        } else {
           return;
         }
       })
       .catch(err => console.log(err));
   },
 
-
-
-
-seedDB: async function (page, membersBuffer, fixArrFn, updateDBFn) {
-  console.log("fire async")
-    let promise = updateDBFn( page, membersBuffer, fixArrFn)
+  seedDB: async function(page, membersBuffer, fixArrFn, updateDBFn) {
+    let promise = updateDBFn(page, membersBuffer, fixArrFn);
     let result = await promise;
     let nextPage = page;
-    while(result.length > 0 && result.length === membersBuffer) {
-      console.log("db actualizada y resulta mas de 120. sigue")
+
+    while (result.length === membersBuffer) {
       result = [];
       nextPage += 1;
-      promise = updateDBFn( nextPage, membersBuffer, fixArrFn);
+      promise = updateDBFn(nextPage, membersBuffer, fixArrFn);
       result = await promise;
-      console.log("result actualizado recursivo", result.length)
-    }  
-}
-};
+    }
+  }
+};  

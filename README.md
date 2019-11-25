@@ -14,15 +14,13 @@ As an extra, a message in the backend will display all the members fields that n
 
 The rest of the requirements that have been fulfilled: responsive web app, requested user interface and master-detail.
 
-
 ### Tools: 
+- React
 - Node-cron: schedule update
 - Node-cache
-- Axios: promise based HTTP client
+- Axios
 - Mongodb Atlas
-- React
-
-
+- Bulma
 
 ### URL && ENV
 - Client will be running on [http://localhost:3000](http://localhost:3000).

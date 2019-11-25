@@ -10,7 +10,7 @@ const navBar = props => {
       className={classes.NavBar}
       style={{ backgroundImage: `url(${backgroundDots})` }}
     >
-      <div className={classes.logoContainer}>
+      <div className={classes.logoContainer} onClick={props.clicked}>
         <img src={logo} alt="Mediasmart logo" className={classes.bigLogo}></img>
         <div className={classes.mobileLogo} alt="logo">
           #
