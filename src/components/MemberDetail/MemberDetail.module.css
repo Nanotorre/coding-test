@@ -1,0 +1,16 @@
+.MemberDetail{
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+
+}
+
+.MemberDetail .imgContainer {
+  width:400px;
+}
+
+.MemberDetail img {
+  width: 100%;
+}

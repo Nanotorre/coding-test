@@ -1,0 +1,16 @@
+.DS_Store
+.env
+node_modules
+npm-debug.log
+npm-debug.log.*
+uploads
+yarn.lock
+package-lock.json
+*~
+temp_backup
+*.tar.gz
+db
+*.rdb
+.#*
+*.crt
+*.key

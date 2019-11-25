@@ -1,0 +1,30 @@
+.Member {
+  width: 400px;
+  height: 250px;
+  background-color: #f44336;
+  margin: 10px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  cursor: pointer;
+  -webkit-animation: fade-in 1.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+	        animation: fade-in 1.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+}
+.Member .profileImg {
+  width: 85px;
+}
+.Member .profileImg img {
+  width: 100%;
+  border-radius: 50%;
+}
+.Member .upperContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.Member .name{
+  margin-left: 10px;
+  width: 260px;
+}

@@ -1,0 +1,15 @@
+.NavButtons {
+  display: flex;
+  margin: 10px;
+ 
+ 
+  
+}
+
+.NavButtons p {
+  width: 50px;
+  text-align: center;
+  margin: auto;
+  color: white;
+  font-weight: bold;
+}

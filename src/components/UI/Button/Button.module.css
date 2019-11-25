@@ -1,0 +1,7 @@
+.Button {
+  padding: 10px;
+  width: 45px;
+  height: 45px;
+  transform: skewX(-5deg);
+  border: none;
+}
