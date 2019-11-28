@@ -5,8 +5,8 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const cache = require('./cache');
 const cron = require('node-cron');
-const Utils = require('./Utils');
 const path = require('path');
+const Utils = require('./Utils');
 
 //Mongo config & db update 
 require ('./configs/db.config');
@@ -39,30 +39,3 @@ app.use('/api', apiRouter);
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
 module.exports= app;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// app.get('/api/hello', (req, res) => {
-//   res.send({ message: 'Hello, I am the server' });
-// });
-
-// app.get('/api/get', (req, res, next) => {
-//   axios.get(`http://work.mediasmart.io?page=1&page_size=3`, {headers: {authorization:"mediasmart2019"}})
-//   .then(response => {
-//     console.log(response.headers["content-length"])
-//     res.json(response.data)
-//   })
-//   .catch(err => console.log(err))
-// })

@@ -7,7 +7,7 @@ class MediasmartService {
     });
   }
 
-  members = (page, size) => {
+  members = (page) => {
     return this.service.get(`/members/${page}`)
     .then( response => response.data) 
     .catch( err => console.log(err))

@@ -94,24 +94,30 @@ module.exports = {
           });
           Member.collection.insertMany(fixedResponseArr);
           return fixedResponseArr;
-        } else {
-          return;
-        }
+        } 
       })
-      .catch(err => console.log(err));
+      .catch(err => console.log("WARNING! Api error: ", err));
   },
 
   
-  seedDB: async function(page, membersBuffer, fixArrFn, updateDBFn) {
-    let promise = updateDBFn(page, membersBuffer, fixArrFn);
+  seedDB: async function(page, membersBuffer, fixArrFn, updateDBandCacheFn) {
+    let promise = updateDBandCacheFn(page, membersBuffer, fixArrFn);
     let result = await promise;
     let nextPage = page;
 
     while (result.length === membersBuffer) {
       result = [];
       nextPage += 1;
-      promise = updateDBFn(nextPage, membersBuffer, fixArrFn);
+      promise = updateDBandCacheFn(nextPage, membersBuffer, fixArrFn);
       result = await promise;
     }
+    Member.find()
+    .limit(membersBuffer)
+    .skip(page)
+    .then(response => {
+       return response
+    })
+    .catch(err=> console.log(err))
   }
+
 };  

@@ -16,7 +16,7 @@ router.get("/members/:page", (req, res, next) => {
         return res.json(response)
        } 
        else {
-        Utils.seedDB(cache.page, cache.membersBuffer, Utils.fixArr, Utils.updateDBandCache)
+        Utils.seedDB(req.params.id, cache.membersBuffer, Utils.fixArr, Utils.updateDBandCache)
         .then( responseFromApi => {
           return res.json(responseFromApi);
         })
@@ -26,6 +26,5 @@ router.get("/members/:page", (req, res, next) => {
     })
     .catch(err => console.log(err))
 });
-
 
 module.exports = router;
